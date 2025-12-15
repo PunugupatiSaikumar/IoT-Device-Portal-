@@ -36,23 +36,31 @@ export function DeviceCard({ device }: DeviceCardProps) {
 
   return (
     <Link href={`/devices/${device.id}`} aria-label={`View details for ${device.name}`}>
-      <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full" role="article">
-        <CardHeader>
-          <div className="flex items-start justify-between">
+      <Card className="group hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 cursor-pointer h-full border-2 hover:border-primary/50 hover:-translate-y-1 backdrop-blur-sm bg-card/90 relative overflow-hidden" role="article">
+        {/* Decorative gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <CardHeader className="relative overflow-hidden z-10">
+          <div className="flex items-start justify-between relative">
             <div className="flex-1">
-              <CardTitle className="text-lg mb-2">{device.name}</CardTitle>
+              <CardTitle className="text-lg mb-2 group-hover:text-primary transition-colors duration-300">
+                {device.name}
+              </CardTitle>
               <CardDescription className="flex items-center gap-2">
-                <span>{getTypeLabel(device.type)}</span>
+                <span className="font-medium">{getTypeLabel(device.type)}</span>
                 <span>•</span>
-                <span>ID: {device.id}</span>
+                <span className="font-mono text-xs">ID: {device.id}</span>
               </CardDescription>
             </div>
-            <Badge variant={getStatusVariant(device.status)}>
+            <Badge 
+              variant={getStatusVariant(device.status)}
+              className="group-hover:scale-110 transition-transform duration-300"
+            >
               {device.status}
             </Badge>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="relative z-10">
           <div className="space-y-3">
             {/* Metadata */}
             {device.metadata.manufacturer && (
@@ -75,22 +83,68 @@ export function DeviceCard({ device }: DeviceCardProps) {
               </div>
             )}
 
-            {/* Battery and Signal */}
-            <div className="flex items-center gap-4 text-sm">
+            {/* Battery and Signal with Progress Bars */}
+            <div className="space-y-2">
               {device.batteryLevel !== undefined && (
-                <div className="flex items-center gap-1.5">
-                  <Battery className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-muted-foreground">
-                    {device.batteryLevel}%
-                  </span>
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-1.5">
+                      <Battery className={`h-3.5 w-3.5 ${
+                        device.batteryLevel > 50 ? "text-green-600" : 
+                        device.batteryLevel > 20 ? "text-yellow-600" : 
+                        "text-red-600"
+                      }`} />
+                      <span className="text-muted-foreground font-medium">Battery</span>
+                    </div>
+                    <span className={`font-semibold ${
+                      device.batteryLevel > 50 ? "text-green-600" : 
+                      device.batteryLevel > 20 ? "text-yellow-600" : 
+                      "text-red-600"
+                    }`}>
+                      {device.batteryLevel}%
+                    </span>
+                  </div>
+                  <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <div
+                      className={`h-full transition-all duration-500 rounded-full ${
+                        device.batteryLevel > 50 ? "bg-green-600" : 
+                        device.batteryLevel > 20 ? "bg-yellow-600" : 
+                        "bg-red-600"
+                      }`}
+                      style={{ width: `${device.batteryLevel}%` }}
+                    ></div>
+                  </div>
                 </div>
               )}
               {device.signalStrength !== undefined && (
-                <div className="flex items-center gap-1.5">
-                  <Signal className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-muted-foreground">
-                    {device.signalStrength}%
-                  </span>
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-1.5">
+                      <Signal className={`h-3.5 w-3.5 ${
+                        device.signalStrength > 70 ? "text-green-600" : 
+                        device.signalStrength > 40 ? "text-yellow-600" : 
+                        "text-red-600"
+                      }`} />
+                      <span className="text-muted-foreground font-medium">Signal</span>
+                    </div>
+                    <span className={`font-semibold ${
+                      device.signalStrength > 70 ? "text-green-600" : 
+                      device.signalStrength > 40 ? "text-yellow-600" : 
+                      "text-red-600"
+                    }`}>
+                      {device.signalStrength}%
+                    </span>
+                  </div>
+                  <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <div
+                      className={`h-full transition-all duration-500 rounded-full ${
+                        device.signalStrength > 70 ? "bg-green-600" : 
+                        device.signalStrength > 40 ? "bg-yellow-600" : 
+                        "bg-red-600"
+                      }`}
+                      style={{ width: `${device.signalStrength}%` }}
+                    ></div>
+                  </div>
                 </div>
               )}
             </div>
