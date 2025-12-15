@@ -2,6 +2,13 @@
 
 A professional, responsive dashboard for viewing IoT device metadata, status, and subscription details. Built with React, Next.js, and TypeScript.
 
+## 🚀 Quick Overview
+
+**Project Type**: Full-stack web application  
+**Data Source**: CSV dataset (10,000+ IoT devices)  
+**Tech Stack**: Next.js 14, React 18, TypeScript, Tailwind CSS  
+**Status**: Production-ready ✅
+
 ## 🚀 Features
 
 - **Device Dashboard**: View all IoT devices in a responsive grid or table layout
@@ -15,27 +22,59 @@ A professional, responsive dashboard for viewing IoT device metadata, status, an
 
 ## 🛠️ Technology Stack
 
-### Core Framework
-- **Next.js 14** - React framework with App Router for server-side rendering and routing
-- **React 18** - UI library for building interactive user interfaces
-- **TypeScript** - Type-safe JavaScript for better code quality and developer experience
+### **Core Framework**
+- **Next.js 14.2.0** - React framework with App Router
+  - Server-side rendering (SSR)
+  - File-based routing
+  - API routes (`/api/devices`)
+  - Automatic optimizations
 
-### Styling & UI
-- **Tailwind CSS** - Utility-first CSS framework for rapid UI development
-- **Radix UI** - Unstyled, accessible component primitives
-- **shadcn/ui** - High-quality component library built on Radix UI
-- **Lucide React** - Beautiful icon library
-- **CSS Variables** - For theming and dark mode support
+- **React 18.3.0** - UI library
+  - Component-based architecture
+  - Hooks (`useState`, `useEffect`, `useMemo`)
+  - Client-side interactivity
 
-### Utilities & Libraries
-- **date-fns** - Modern JavaScript date utility library
-- **class-variance-authority** - For component variant management
-- **clsx & tailwind-merge** - For conditional className management
+- **TypeScript 5.5.0** - Type-safe JavaScript
+  - Full type coverage
+  - Interface definitions
+  - Compile-time checking
 
-### Development Tools
-- **ESLint** - Code linting and quality checks
-- **PostCSS** - CSS processing with Tailwind
-- **Autoprefixer** - Automatic vendor prefixing
+### **Styling & UI**
+- **Tailwind CSS 3.4.4** - Utility-first CSS
+  - Responsive utilities
+  - Custom theme
+  - CSS variables
+
+- **Radix UI** - Accessible primitives
+  - Select, Slot, Tabs components
+  - Built-in accessibility
+
+- **shadcn/ui Pattern** - Component library
+  - Reusable components
+  - Copy-paste architecture
+
+- **Lucide React 0.400.0** - Icon library
+  - 1000+ icons
+  - Tree-shakeable
+
+### **Data Processing**
+- **PapaParse 5.5.3** - CSV parsing
+  - Handles 10,000+ rows
+  - Type-safe parsing
+
+- **date-fns 3.6.0** - Date utilities
+  - Formatting
+  - Relative time
+
+### **Utilities**
+- **clsx 2.1.1** - Conditional classes
+- **tailwind-merge 2.4.0** - Merge Tailwind classes
+- **class-variance-authority 0.7.0** - Component variants
+
+### **Development Tools**
+- **ESLint 8.57.0** - Code linting
+- **PostCSS 8.4.38** - CSS processing
+- **Autoprefixer 10.4.19** - Vendor prefixing
 
 ## 📁 Project Structure
 
